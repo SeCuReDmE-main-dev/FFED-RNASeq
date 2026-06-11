@@ -53,13 +53,22 @@ counts <- data.frame(
 rnaseq_state <- lvfm_project_rnaseq_levels(counts, numeric_cols = c("exon_count", "exon_signal", "exon_noise"))
 deu_state <- lvfm_project_deu(counts, numeric_cols = c("exon_count", "exon_signal"))
 enrichment_state <- lvfm_project_enrichment(counts, numeric_cols = c("exon_signal", "exon_noise"))
+gene_list_state <- lvfm_project_metadata(
+  data.frame(gene_list = c("SFARI", "PanelApp", "SFARI", "Other"), stringsAsFactors = FALSE),
+  "gene_list",
+  positive = c("SFARI", "PanelApp"),
+  negative = "Other",
+  label = "gene_list"
+)
 
 assert_true(inherits(rnaseq_state, "StateField"), "RNA-seq representative projection failed")
 assert_true(inherits(deu_state, "StateField"), "DEU representative projection failed")
 assert_true(inherits(enrichment_state, "StateField"), "enrichment representative projection failed")
+assert_true(inherits(gene_list_state, "StateField"), "gene-list enrichment projection failed")
 assert_true(all(rnaseq_state$mu + rnaseq_state$nu <= 1), "RNA-seq representative projection not admissible")
 assert_true(all(deu_state$mu + deu_state$nu <= 1), "DEU representative projection not admissible")
 assert_true(all(enrichment_state$mu + enrichment_state$nu <= 1), "enrichment representative projection not admissible")
+assert_true(all(gene_list_state$mu + gene_list_state$nu <= 1), "gene-list enrichment projection not admissible")
 
 combined <- join(rnaseq_state, tensor(deu_state, enrichment_state))
 assert_true(inherits(combined, "StateField"), "combined pipeline state failed")
