@@ -33,12 +33,7 @@ sample_info <- sample_info[1:43,]
 ```
 
 ```{r}
-source("BPA_F.R")
-source("Eth_F.R")
-source("FH_F.R")
-source("Pb_F.R")
-source("VPA_F.R")
-source("Zn_F.R")
+source("../../lvfm_core/R/lvfm_core.R")
 ```
 
 ```{r}

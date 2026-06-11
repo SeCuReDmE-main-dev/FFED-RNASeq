@@ -56,7 +56,7 @@ sample_info <- sample_info[1:43,]
 BPA:
 
 ```{r}
-source("/Users/k6-c02dm8d6ml7h/Desktop/K6_Tammimies/GeEn_Project/Splicing/R_codes/BPA_F.R")
+source("../../lvfm_core/R/lvfm_core.R")
 ```
 
 BPA_F <- function(SampleData){
