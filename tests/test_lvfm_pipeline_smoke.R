@@ -23,9 +23,26 @@ sample_info <- data.frame(
   stringsAsFactors = FALSE
 )
 
-sample_info$BPA <- BPA_F(data.frame(matrix(NA, nrow = nrow(sample_info), ncol = 5), stringsAsFactors = FALSE))
-sample_info$Pb <- Pb_F(data.frame(matrix(NA, nrow = nrow(sample_info), ncol = 5), stringsAsFactors = FALSE))
-sample_info$risk <- risk_F(data.frame(matrix(NA, nrow = nrow(sample_info), ncol = 4), stringsAsFactors = FALSE))
+legacy_exposure_frame <- data.frame(
+  c1 = sample_info$sample_id,
+  c2 = sample_info$cell_line,
+  c3 = sample_info$sample_id,
+  c4 = sample_info$cell_line,
+  c5 = sample_info$exposure,
+  stringsAsFactors = FALSE
+)
+
+legacy_risk_frame <- data.frame(
+  c1 = sample_info$sample_id,
+  c2 = sample_info$sample_id,
+  c3 = sample_info$sample_id,
+  c4 = sample_info$cell_line,
+  stringsAsFactors = FALSE
+)
+
+sample_info$BPA <- BPA_F(legacy_exposure_frame)
+sample_info$Pb <- Pb_F(legacy_exposure_frame)
+sample_info$risk <- risk_F(legacy_risk_frame)
 
 counts <- data.frame(
   exon_count = c(100, 120, 80, 90, 40, 60),
