@@ -50,6 +50,17 @@ assert_true(inherits(projected, "StateField"), "table projection did not produce
 assert_true(length(projected$mu) == nrow(tab), "projected mu length mismatch")
 assert_true(all(projected$mu + projected$nu <= 1 + 1e-8, na.rm = TRUE), "projected state is not admissible")
 
+projected_repeat <- lvfm_project_table(tab, label = "test_table")
+assert_equal(projected$mu, projected_repeat$mu, "table projection is not reproducible for mu")
+assert_equal(projected$nu, projected_repeat$nu, "table projection is not reproducible for nu")
+
+assert_true(inherits(lvfm_project_rnaseq_levels(tab), "StateField"), "RNA-seq levels adapter failed")
+assert_true(inherits(lvfm_project_rnaseq_level_iv(tab), "StateField"), "RNA-seq level IV adapter failed")
+assert_true(inherits(lvfm_project_deu(tab), "StateField"), "DEU adapter failed")
+assert_true(inherits(lvfm_project_enrichment(tab), "StateField"), "enrichment adapter failed")
+assert_true(inherits(lvfm_project_brainspan(tab), "StateField"), "BrainSpan adapter failed")
+assert_true(inherits(lvfm_project_metabolomics(tab), "StateField"), "metabolomics adapter failed")
+
 meta <- data.frame(group = c("risk", "control", "risk", "unknown"), stringsAsFactors = FALSE)
 meta_state <- lvfm_project_metadata(meta, "group", positive = "risk", negative = "control", label = "meta")
 assert_equal(meta_state$mu, c(1, 0, 1, 0), "metadata positive mapping failed")
