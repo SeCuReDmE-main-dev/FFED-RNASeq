@@ -31,13 +31,7 @@ sample_info <- sample_info[1:43,]
 ```
 
 ```{r}
-source("../R_codes/BPA_F.R")
-source("../R_codes/Eth_F.R")
-source("../R_codes/FH_F.R")
-source("../R_codes/Zn_F.R")
-source("../R_codes/VPA_F.R")
-source("../R_codes/Pb_F.R")
-source("../R_codes/risk_F.R")
+source("../../lvfm_core/R/lvfm_core.R")
 ```
 
 ```{r}

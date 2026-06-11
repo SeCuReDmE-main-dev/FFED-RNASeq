@@ -1,0 +1,20 @@
+Package: lvfm_core
+Type: Package
+Title: Lattice-Valued Fractal Morphogenesis Core
+Version: 0.1.0
+Authors@R: c(
+    person("SeCuReDmE", role = c("aut", "cre"))
+)
+Description: Minimal R-native core for lattice-valued fractal morphogenesis,
+    including candidate master-formula helpers, state-field projections,
+    compatibility wrappers for the legacy FFED-RNASeq factor helpers, and
+    lightweight adapters for RNA-seq, DEU, enrichment, BrainSpan, and
+    metabolomics workflows.
+License: file LICENSE
+Encoding: UTF-8
+LazyData: false
+Imports:
+    stats,
+    utils
+Suggests:
+    testthat
