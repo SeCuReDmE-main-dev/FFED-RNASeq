@@ -259,6 +259,7 @@ lvfm_project_table <- function(data, numeric_cols = NULL, label = NULL, provenan
     numeric_cols <- names(data)[vapply(data, is.numeric, logical(1))]
   }
   numeric_cols <- intersect(numeric_cols, names(data))
+  numeric_cols <- numeric_cols[vapply(data[numeric_cols], is.numeric, logical(1))]
 
   if (!length(numeric_cols)) {
     return(StateField(rep(fallback_mu, n), rep(fallback_nu, n), provenance = provenance, label = label))
